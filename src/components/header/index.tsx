@@ -1,42 +1,133 @@
 import { tw, css } from 'twind/css';
-import Button from '@/components/button';
-import Netlify from '@/constants/svg/netlify.svg';
-import Nike from '@/constants/svg/nike.svg';
-import Figma from '@/constants/svg/figma.svg';
-import Aws from '@/constants/svg/aws.svg';
+import { motion } from 'framer-motion';
+import ParticlesComponent from '../particles/ParticlesComponent';
 
 const headerStyle = css`
-  background-color: #ffffff;
-  min-height: calc(100vh - 6rem);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+
+const leftSideStyle = css`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    width: 50%;
+    align-items: flex-start;
+    padding: 4rem;
+    text-align: left;
+  }
+`;
+
+const rightSideStyle = css`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    min-height: 100vh;
+  }
+`;
+
+const buttonStyle = css`
+  padding: 1.5rem 4rem;
+  font-size: 5rem;
+  font-family: 'bebas', sans-serif;
+  justify-content: center;
+  align-self: center;
+  min-width: 300px;
+  margin-bottom: 6rem;
+  border-radius: 12px;
+  background-color: #c6973c;
+  color: #fff;
+  border: 1px solid #d7bf84;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    background-color: #ffc107;
+    border-color: #d7bf84;
+  }
+
+  @media (min-width: 768px) {
+    padding: 1.5rem 4rem;
+    font-size: 2rem;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 5rem;
+    margin-bottom: 6rem;
+  }
+`;
+
+const highlightStyle = css`
+  background-color: yellow;
+  font-family: 'migae', sans-serif;
+  color: black;
+  padding: 7px 4px 0px 4px;
+  border-radius: 4px;
+`;
+
+const emphasizedTextStyle = css`
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+  font-size: 2rem;
+  font-family: 'bebas', sans-serif;
+  font-weight: bold;
+  padding-top: 0.8rem;
+  margin-bottom: 0.3rem;
+
+  @media (min-width: 768px) {
+    font-size: 3rem;
+  }
+
+  @media (min-width: 1280px) {
+    font-size: 4.5rem;
+  }
 `;
 
 const Header = () => (
   <header className={tw(headerStyle)}>
-    <div className={tw(`max-w-4xl mx-auto py-16 px-14 sm:px-6 lg:px-8`)}>
-      <h1 className={tw(`font-sans font-bold text-4xl md:text-5xl lg:text-8xl text-center leading-snug text-gray-800`)}>
-        Your website, beyond expectations
+    <div className={tw(leftSideStyle)}>
+      <h1 className={tw(`text-5xl font-pogo uppercase text-white pt-16 text-center`)}>
+        <span className={tw(highlightStyle)}>Liberte-se</span> da
+        <span className={tw(highlightStyle)}> Constipação </span>
+        com a Ajuda da
+        <span className={tw(emphasizedTextStyle)}> Capitã Liberta-Ventre </span>
+        <br />O <span className={tw(highlightStyle)}> manual </span> que transformou a vida de milhares de mulheres e
+        agora pode <span className={tw(highlightStyle)}> transformar </span> a sua.
       </h1>
-      <div className={tw(`max-w-xl mx-auto`)}>
-        <p className={tw(`mt-10 text-gray-500 text-center text-xl lg:text-3xl`)}>
-          Make your website wonderful and build beyond your expectations.
-        </p>
-      </div>
-      <div className={tw(`mt-10 flex justify-center items-center w-full mx-auto`)}>
-        <Button primary>Get started</Button>
-        <span className={tw(`mx-2`)}>or</span>
-        <Button>Contact us</Button>
-      </div>
+      <h2 className={tw(`text-3xl font-migae text-white text-center`)}>
+        Se você está cansada de lutar contra a prisão de ventre, inchaço e desconforto, está no lugar certo. Chegou a
+        hora de virar o jogo com dicas, técnicas naturais e uma abordagem revolucionária que realmente funciona!
+      </h2>
+      <motion.button
+        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.05 }}
+        type="button"
+        className={tw(buttonStyle)}
+        onClick={() => {
+          const element = document.getElementById(`vsl`);
+          if (element) {
+            element.scrollIntoView({ behavior: `smooth` });
+          }
+        }}
+      >
+        Inicie Sua Jornada
+      </motion.button>
     </div>
-    <div className={tw(`flex justify-center w-full`)}>
-      <div className={tw(`mt-4 w-full`)}>
-        <p className={tw(`font-mono uppercase text-center font-medium text-sm text-gray-600`)}>These folks get it</p>
-        <div className={tw(`flex items-center justify-center mx-auto flex-wrap`)}>
-          <Aws className={tw(`m-12 mb-8`)} width={120} />
-          <Netlify className={tw(`m-12`)} width={140} />
-          <Nike className={tw(`m-12`)} width={140} />
-          <Figma className={tw(`m-12`)} width={140} />
-        </div>
-      </div>
+    <div className={tw(rightSideStyle)}>
+      <ParticlesComponent />
     </div>
   </header>
 );

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
 import { setup } from 'twind';
-import { asyncVirtualSheet, getStyleTagProperties } from 'twind/server';
+import { virtualSheet, getStyleTagProperties } from 'twind/server';
 import twindConfig from '../twind.config';
 
-const sheet = asyncVirtualSheet();
+const sheet = virtualSheet();
 
 setup({ ...twindConfig, sheet });
 
@@ -24,10 +24,8 @@ class MyDocument extends Document {
     return {
       ...initialProps,
       styles: [
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         ...initialProps.styles,
-        React.createElement(`style`, styleProps),
+        React.createElement(`style`, styleProps), // Insere o estilo do Twind diretamente
       ],
     };
   }
