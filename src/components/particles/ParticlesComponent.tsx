@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import Particles, { initParticlesEngine } from '@tsparticles/react';
-import { Container, ISourceOptions, MoveDirection, OutMode } from '@tsparticles/engine';
+import { ISourceOptions, MoveDirection, OutMode } from '@tsparticles/engine';
 import { loadSlim } from '@tsparticles/slim';
 
 const ParticlesComponent = () => {
@@ -14,15 +14,11 @@ const ParticlesComponent = () => {
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    console.log(container);
-  };
-
   const options: ISourceOptions = useMemo(
     () => ({
       background: {
         color: {
-          value: `#0000000`, // Fundo preto para destacar os brilhos
+          value: `#0000000`,
         },
       },
       fpsLimit: 60,
@@ -30,74 +26,74 @@ const ParticlesComponent = () => {
         events: {
           onClick: {
             enable: true,
-            mode: `push`, // Adiciona partículas ao clicar
+            mode: `push`,
           },
           onHover: {
             enable: true,
-            mode: `repulse`, // Repele partículas ao passar o mouse
+            mode: `repulse`,
           },
         },
         modes: {
           push: {
-            quantity: 5, // Quantidade de partículas ao clicar
+            quantity: 5,
           },
           repulse: {
-            distance: 100, // Distância de repulsão ao passar o mouse
+            distance: 100,
             duration: 0.4,
           },
         },
       },
       particles: {
         color: {
-          value: [`#ffaf40`, `#f54291`, `#42f5dd`, `#ffffff`], // Cores dos brilhos
+          value: [`#ffaf40`, `#f54291`, `#42f5dd`, `#ffffff`],
         },
         links: {
-          enable: false, // Sem links entre as partículas
+          enable: false,
         },
         move: {
           enable: true,
-          direction: MoveDirection.none, // Movimento aleatório
-          speed: 1, // Velocidade mais lenta para o efeito
+          direction: MoveDirection.none,
+          speed: 1,
           outModes: {
-            default: OutMode.out, // Sai da tela
+            default: OutMode.out,
           },
         },
         number: {
-          value: 150, // Quantidade de partículas
+          value: 150,
           density: {
             enable: true,
-            area: 800, // Densidade na tela
+            area: 800,
           },
         },
         opacity: {
-          value: { min: 0.3, max: 0.8 }, // Variação de opacidade
+          value: { min: 0.3, max: 0.8 },
           animation: {
             enable: true,
-            speed: 1, // Animação suave de opacidade
+            speed: 1,
             minimumValue: 0.3,
             sync: false,
           },
         },
         shape: {
-          type: `circle`, // Forma das partículas
+          type: `circle`,
         },
         size: {
-          value: { min: 1, max: 3 }, // Tamanho das partículas
+          value: { min: 1, max: 3 },
           animation: {
             enable: true,
-            speed: 5, // Tamanho pulsante
+            speed: 5,
             minimumValue: 1,
             sync: false,
           },
         },
       },
-      detectRetina: true, // Suporte para telas Retina
+      detectRetina: true,
     }),
     [],
   );
 
   if (init) {
-    return <Particles id="tsparticles" particlesLoaded={particlesLoaded} options={options} />;
+    return <Particles id="tsparticles" options={options} />;
   }
 
   return <></>;

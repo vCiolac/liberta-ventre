@@ -20,7 +20,7 @@ const Page = ({ children }: IProps) => {
     return () => window.removeEventListener(`resize`, handleResize);
   }, []);
 
-  const backgroundImage = isMobile ? `/images/bg-mobile.jpg` : `/images/bg.png`;
+  const backgroundImage = isMobile ? `/images/bg-mobile.png` : `/images/bg.png`;
 
   return (
     <div className={tw(`relative min-h-screen`)}>
@@ -37,7 +37,7 @@ const Page = ({ children }: IProps) => {
           objectPosition: `top center`,
           zIndex: -1,
         }}
-        quality={85}
+        quality={100}
         priority
       />
 
