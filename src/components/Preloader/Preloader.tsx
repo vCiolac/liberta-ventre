@@ -17,6 +17,16 @@ const preloaderStyle = css`
   z-index: 50;
 `;
 
+const charStyle = css`
+  font-family: 'bebas', sans-serif;
+  font-size: 3rem;
+  @media (min-width: 768px) {
+    font-size: 5rem;
+  }
+  color: white;
+  opacity: 0; /* Garantindo que a opacidade seja controlada pela animação */
+`;
+
 const Preloader = ({ onExit }: PreloaderProps) => {
   const preloaderRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
@@ -55,8 +65,12 @@ const Preloader = ({ onExit }: PreloaderProps) => {
     <div ref={preloaderRef} className={tw(preloaderStyle)}>
       <h1 ref={textRef} className={tw(`text-white text-4xl font-bold`)}>
         {text.split(``).map((char, index) => (
-          <span key={uniqueKeys[index]} className={tw(hideChars ? `opacity-0` : `opacity-0`)}>
-            {char}
+          <span
+            key={uniqueKeys[index]}
+            className={tw(charStyle, hideChars ? `opacity-0` : ``)}
+            style={{ display: char === ` ` ? `inline-block` : `inline` }}
+          >
+            {char === ` ` ? `\u00A0` : char}
           </span>
         ))}
       </h1>
