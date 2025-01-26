@@ -20,14 +20,13 @@ const Page = ({ children }: IProps) => {
     return () => window.removeEventListener(`resize`, handleResize);
   }, []);
 
-  const backgroundImage = isMobile ? `/images/bg-mobile.png` : `/images/bg.png`;
+  const backgroundImage = isMobile ? `/images/bg-mobile-dark.png` : `/images/bg-dark.png`;
 
   return (
     <div className={tw(`relative min-h-screen`)}>
       <Head>
         <link rel="icon" href="/logo.svg" />
       </Head>
-
       <Image
         src={backgroundImage}
         alt="Background"
@@ -41,7 +40,6 @@ const Page = ({ children }: IProps) => {
         priority
       />
 
-      <div className={tw(`absolute inset-0 bg-black opacity-60`)} />
       <div className={tw(`relative z-10 flex flex-col`)}>{children}</div>
     </div>
   );

@@ -26,14 +26,12 @@ export default function Home() {
       {showPreloader && <Preloader onExit={handlePreloaderExit} />}
       {showPage && (
         <Page>
-          <div className={tw(`h-screen overflow-y-auto md:overflow-hidden`)}>
-            <Header />
-          </div>
+          <Header />
           <main>
             <VideoSection />
             <ListSection />
-            <FeatureSection />
             <SocialProof />
+            <FeatureSection />
             <PricingTable />
           </main>
           <Footer />
