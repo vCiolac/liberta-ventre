@@ -7,7 +7,6 @@ import { css } from 'twind/css';
 import useIntersectionObserver from '@/hooks/IntersectionObserver';
 
 const sectionStyle = css`
-  background-color: #fff4f4;
   padding-bottom: 4rem;
   padding-top: 4rem;
 `;

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { tw } from 'twind';
 import { css } from 'twind/css';
@@ -13,7 +13,7 @@ const preloaderStyle = css`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #56392f;
+  background-color: #db8f76;
   z-index: 50;
 `;
 
@@ -24,13 +24,13 @@ const charStyle = css`
     font-size: 5rem;
   }
   color: white;
-  opacity: 0; /* Garantindo que a opacidade seja controlada pela animação */
+  opacity: 0;
+  visibility: hidden;
 `;
 
 const Preloader = ({ onExit }: PreloaderProps) => {
   const preloaderRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
-  const [hideChars, setHideChars] = useState(false);
 
   const text = `Capitã Liberta Ventre`;
 
@@ -41,17 +41,19 @@ const Preloader = ({ onExit }: PreloaderProps) => {
 
   useEffect(() => {
     if (textRef.current && preloaderRef.current) {
-      const chars = textRef.current.children;
-      const tl = gsap.timeline();
+      const chars = Array.from(textRef.current.children) as HTMLElement[];
 
-      tl.to(chars, {
-        duration: 0.05,
-        opacity: 1,
-        stagger: 0.05,
-      })
-        .add(() => {
-          setHideChars(true);
+      const tl = gsap.timeline({
+        onComplete: () => {
           onExit();
+        },
+      });
+
+      tl.set(chars, { visibility: `visible` })
+        .to(chars, {
+          duration: 0.05,
+          opacity: 1,
+          stagger: 0.05,
         })
         .to(preloaderRef.current, {
           y: `-100%`,
@@ -67,7 +69,7 @@ const Preloader = ({ onExit }: PreloaderProps) => {
         {text.split(``).map((char, index) => (
           <span
             key={uniqueKeys[index]}
-            className={tw(charStyle, hideChars ? `opacity-0` : ``)}
+            className={tw(charStyle)}
             style={{ display: char === ` ` ? `inline-block` : `inline` }}
           >
             {char === ` ` ? `\u00A0` : char}

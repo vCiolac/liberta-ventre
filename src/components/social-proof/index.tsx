@@ -3,15 +3,17 @@
 import { tw } from 'twind';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import Image from 'next/image';
 import Quote from '@/constants/svg/quote.svg';
 import useIntersectionObserver from '@/hooks/IntersectionObserver';
+import CountUpSection from '../countup/CountUpSection';
 
 const socialProofs = [
   {
     id: 1,
     name: `Ana Clara`,
     company: `Cliente satisfeita`,
-    image: `/images/social-1.webp`,
+    image: `/images/client-3.jpeg`,
     text: `Com as dicas da Capitã Liberta Ventre, minha vida mudou completamente.
     Hoje me sinto mais leve, saudável e confiante. Recomendo a todas as mulheres
     que buscam uma solução natural e eficaz.`,
@@ -20,7 +22,7 @@ const socialProofs = [
     id: 2,
     name: `Juliana Martins`,
     company: `Cliente transformada`,
-    image: `/images/social-2.webp`,
+    image: `/images/client-2.jpeg`,
     text: `Achei que nunca encontraria uma solução para o meu desconforto.
     Graças ao manual, finalmente consegui resultados incríveis de forma
     simples e prática.`,
@@ -29,7 +31,7 @@ const socialProofs = [
     id: 3,
     name: `Carolina Silva`,
     company: `Leitora encantada`,
-    image: `/images/social-3.webp`,
+    image: `/images/client-1.jpg`,
     text: `O manual da Capitã Liberta Ventre é tudo o que eu precisava!
     Com dicas fáceis de implementar, minha saúde melhorou em poucos dias.`,
   },
@@ -50,7 +52,9 @@ const SocialProof = () => {
   };
 
   return (
-    <section className={tw(`bg-gradient-to-b from-gray-400 to-[#56382D] py-16`)}>
+    <section className={tw(`py-16 flex flex-col items-center`)}>
+      <Image src="/images/mulheres.webp" alt="Social Proof" width={195} height={195} className={tw(`mb-8`)} />
+      <CountUpSection />
       <div className={tw(`container mx-auto max-w-4xl p-4`)} ref={ref}>
         <motion.h2
           className={tw(`text-center text-3xl md:text-4xl font-bold text-gray-800 mb-12`)}

@@ -22,13 +22,27 @@ const checkStyle = css`
   margin-right: 1rem;
 `;
 
+const buttonStyle = css`
+  background-color: #d87706;
+  color: #fff;
+  border-color: #d87706;
+  font-weight: 700;
+  padding: 1rem 2rem;
+  font-size: 1.25rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #c76605;
+    border-color: #c76605;
+  }
+`;
+
 const PricingTable = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
 
   return (
     <section>
       <motion.div
-        className={tw(`relative max-w-7xl mx-auto mb-24`)}
+        className={tw(`relative max-w-7xl mx-auto mb-16 pt-16`)}
         ref={ref}
         initial={{ opacity: 0, x: 100 }}
         animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
@@ -74,7 +88,7 @@ const PricingTable = () => {
             <p className={tw(`text-gray-500 text-base mb-6`)}>
               Um guia completo para transformar sua saúde. Pagamento seguro e acesso imediato.
             </p>
-            <Button primary modifier="mt-6">
+            <Button primary modifier="mt-6" className={tw(buttonStyle)}>
               Compre Agora
             </Button>
             <p className={tw(`text-sm text-gray-400 mt-4`)}>*Oferta válida por tempo limitado.</p>

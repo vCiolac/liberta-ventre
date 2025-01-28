@@ -1,48 +1,24 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
 import { tw } from 'twind';
+import { css } from 'twind/css';
 
 interface IProps {
   children: React.ReactNode;
 }
 
-const Page = ({ children }: IProps) => {
-  const [isMobile, setIsMobile] = useState(false);
+const pageStyle = css`
+  background-color: #fff4f4;
+`;
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    handleResize();
-    window.addEventListener(`resize`, handleResize);
-    return () => window.removeEventListener(`resize`, handleResize);
-  }, []);
-
-  const backgroundImage = isMobile ? `/images/bg-mobile-dark.png` : `/images/bg-dark.png`;
-
-  return (
-    <div className={tw(`relative min-h-screen`)}>
+const Page = ({ children }: IProps) => (
+  <div className={tw(`relative min-h-screen max-w-full overflow-hidden`)}>
+    <div className={tw(pageStyle)}>
       <Head>
         <link rel="icon" href="/logo.svg" />
       </Head>
-      <Image
-        src={backgroundImage}
-        alt="Background"
-        fill
-        style={{
-          objectFit: `contain`,
-          objectPosition: `top center`,
-          zIndex: -1,
-        }}
-        quality={100}
-        priority
-      />
-
       <div className={tw(`relative z-10 flex flex-col`)}>{children}</div>
     </div>
-  );
-};
+  </div>
+);
 
 export default Page;
