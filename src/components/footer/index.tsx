@@ -6,7 +6,7 @@ const Footer = () => (
     <div className={tw(`max-w-7xl mx-auto px-6 lg:px-12`)}>
       <div className={tw(`flex flex-col lg:flex-row items-center justify-between mb-8`)}>
         <div className={tw(`flex items-center mb-6 lg:mb-0`)}>
-          <img src="/images/logo2.png" alt="Logo Capitã Liberta Ventre" className={tw(`h-12 w-12 mr-3`)} />
+          <img src="/images/logo.png" alt="Logo Capitã Liberta Ventre" className={tw(`h-12 w-12 mr-3`)} />
           <span className={tw(`text-xl font-bold text-gray-800`)}>Capitã Liberta Ventre</span>
         </div>
 

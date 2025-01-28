@@ -8,7 +8,6 @@ import FeatureSection from '@/components/feature-section';
 import SocialProof from '@/components/social-proof';
 import PricingTable from '@/components/pricing-table';
 import Footer from '@/components/footer';
-import { tw } from 'twind/css';
 import Preloader from '@/components/Preloader/Preloader';
 
 export default function Home() {

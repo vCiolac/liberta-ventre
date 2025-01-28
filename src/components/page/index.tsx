@@ -14,7 +14,7 @@ const Page = ({ children }: IProps) => (
   <div className={tw(`relative min-h-screen max-w-full overflow-hidden`)}>
     <div className={tw(pageStyle)}>
       <Head>
-        <link rel="icon" href="/logo.svg" />
+        <link rel="icon" href="/logo.png" />
       </Head>
       <div className={tw(`relative z-10 flex flex-col`)}>{children}</div>
     </div>
