@@ -1,9 +1,16 @@
+import { useEffect } from 'react';
 import { tw } from 'twind';
 import Check from '@/constants/svg/check.svg';
 import Button from '@/components/button';
 import { css } from 'twind/css';
 import { motion } from 'framer-motion';
 import useIntersectionObserver from '@/hooks/IntersectionObserver';
+
+declare global {
+  interface Window {
+    fbq: (event: string, action: string) => void;
+  }
+}
 
 const features = [
   `Conteúdo acessível e prático`,
@@ -23,77 +30,69 @@ const checkStyle = css`
 `;
 
 const buttonStyle = css`
-  background-color: #d87706;
+  background-color: #008000;
   color: #fff;
-  border-color: #d87706;
+  border-color: #008000;
   font-weight: 700;
   padding: 1rem 2rem;
   font-size: 1.25rem;
   cursor: pointer;
   &:hover {
-    background-color: #c76605;
-    border-color: #c76605;
+    background-color: #006400;
+    border-color: #006400;
   }
 `;
 
 const PricingTable = () => {
   const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
 
+  useEffect(() => {
+    if (isVisible) {
+      window.fbq(`track`, `ViewContent`);
+    }
+  }, [isVisible]);
+
+  const trackCheckout = () => {
+    window.fbq(`track`, `InitiateCheckout`);
+  };
+
   return (
-    <section>
+    <section className={tw(`max-w-3xl mt-6 mx-auto bg-white shadow-xl rounded-lg text-center`)}>
       <motion.div
-        className={tw(`relative max-w-7xl mx-auto mb-16 pt-16`)}
         ref={ref}
-        initial={{ opacity: 0, x: 100 }}
-        animate={isVisible ? { opacity: 1, x: 0 } : { opacity: 0, x: 100 }}
+        initial={{ opacity: 0, y: 50 }}
+        animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8, ease: `easeOut` }}
+        className={tw(`p-8`)}
       >
-        <motion.div
-          className={tw(
-            `overflow-hidden lg:max-w-none lg:flex shadow-xl rounded-lg 
-          bg-gradient-to-b from-yellow-100 via-white to-yellow-50`,
-          )}
-          initial={{ scale: 0.9 }}
-          animate={isVisible ? { scale: 1 } : { scale: 0.9 }}
-          transition={{ duration: 0.6, ease: `easeOut` }}
-        >
-          <div className={tw(`py-8 px-6 md:px-8 bg-yellow-50 lg:flex-shrink-1`)}>
-            <h2 className={tw(`text-4xl lg:text-6xl font-extrabold text-gray-800 mb-8`)}>Transforme sua vida hoje!</h2>
-            <p className={tw(`text-lg leading-7 text-gray-700 mb-8`)}>
-              Descubra como o e-book &quot;Capitã Liberta-Ventre&quot; pode ajudá-la a superar a constipação de forma
-              natural e eficaz. Com métodos comprovados e aprovados por especialistas, você estará no caminho para uma
-              vida mais saudável e confortável.
-            </p>
-            <div>
-              <h3 className={tw(`text-base font-semibold text-yellow-600 uppercase mb-4 tracking-wide`)}>
-                O que você vai encontrar:
-              </h3>
-              <ul className={tw(`space-y-4 lg:grid lg:grid-cols-2 lg:gap-x-6`)}>
-                {features.map((feature) => (
-                  <li className={tw(`flex items-center`)} key={feature}>
-                    <Check className={tw(checkStyle)} />
-                    <p className={tw(`text-gray-700 text-base md:w-72`)}>{feature}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-          <div
-            className={tw(
-              `py-12 px-4 bg-white text-center lg:flex-shrink-0 lg:flex lg:flex-col lg:justify-center rounded-lg`,
-            )}
-          >
-            <h3 className={tw(`text-2xl font-bold text-gray-800 mb-4`)}>Aproveite a oferta</h3>
-            <p className={tw(`text-6xl font-extrabold text-yellow-600 mb-6`)}>R$19,90</p>
-            <p className={tw(`text-gray-500 text-base mb-6`)}>
-              Um guia completo para transformar sua saúde. Pagamento seguro e acesso imediato.
-            </p>
-            <Button primary modifier="mt-6" className={tw(buttonStyle)}>
-              Compre Agora
-            </Button>
-            <p className={tw(`text-sm text-gray-400 mt-4`)}>*Oferta válida por tempo limitado.</p>
-          </div>
-        </motion.div>
+        <h2 className={tw(`text-4xl lg:text-6xl font-extrabold text-gray-800 mb-8`)}>Transforme sua vida hoje!</h2>
+        <p className={tw(`text-gray-700 text-lg mb-4`)}>
+          Adquira agora o <strong>Manual da Capitã Liberta-Ventre</strong> e receba um
+          <strong> e-book bônus exclusivo!</strong>
+        </p>
+        <div className={tw(`bg-yellow-200 text-yellow-900 font-semibold py-2 px-4 mb-4 rounded-lg`)}>
+          🎁 <strong>Bônus Especial:</strong> Leve um <strong>e-book extra grátis</strong> na compra! 🎁
+        </div>
+        <h3 className={tw(`text-xl font-bold text-gray-800 mb-4`)}>O que você vai receber:</h3>
+        <ul className={tw(`space-y-3 mb-6 text-left mx-auto max-w-lg`)}>
+          {features.map((feature) => (
+            <li className={tw(`flex items-center`)} key={feature}>
+              <Check className={tw(checkStyle)} />
+              <p className={tw(`text-gray-700 text-lg`)}>{feature}</p>
+            </li>
+          ))}
+        </ul>
+        <div className={tw(`bg-gray-100 p-4 rounded-lg mb-6`)}>
+          <p className={tw(`text-gray-500 text-lg line-through`)}>
+            De <strong>R$169,00</strong>
+          </p>
+          <p className={tw(`text-6xl font-extrabold text-green-600`)}>R$57,00</p>
+        </div>
+
+        <Button primary modifier="mt-6" className={tw(buttonStyle)} onClick={trackCheckout}>
+          COMPRAR AGORA!
+        </Button>
+        <p className={tw(`text-sm text-gray-500 mt-4`)}>🚀 Acesso imediato e pagamento 100% seguro!</p>
       </motion.div>
     </section>
   );

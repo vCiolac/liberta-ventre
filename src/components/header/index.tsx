@@ -14,7 +14,7 @@ const headerStyle = css`
   overflow-y: hidden;
   scroll-behavior: smooth;
   @media (min-width: 1280px) {
-    padding-top: 5rem;
+    padding-top: 2rem;
   }
 `;
 
@@ -23,20 +23,19 @@ const titleContainerStyle = css`
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
-  gap: 1rem;
 `;
 
-const emphasizedTextStyle = css`
-  color: #f8c75d;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  font-size: 2rem;
-  font-family: 'bebas', sans-serif;
-  font-weight: bold;
+// const emphasizedTextStyle = css`
+//   color: #f8c75d;
+//   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+//   font-size: 2rem;
+//   font-family: 'bebas', sans-serif;
+//   font-weight: bold;
 
-  @media (min-width: 1280px) {
-    font-size: 2rem;
-  }
-`;
+//   @media (min-width: 1280px) {
+//     font-size: 2rem;
+//   }
+// `;
 
 const h2Style = css`
   font-size: 2rem;
@@ -74,8 +73,8 @@ const fadeInVariants = {
 const Header = () => (
   <motion.header className={tw(headerStyle)} initial="hidden" animate="visible" variants={fadeInVariants}>
     <motion.div className={tw(titleContainerStyle)} variants={fadeInVariants}>
-      <Image src="/images/logo2.png" alt="Ícone da Capitã Liberta-Ventre" width={75} height={75} />
-      <motion.h1 className={tw(emphasizedTextStyle)}>Capitã Liberta-Ventre</motion.h1>
+      <Image src="/images/logo_svg.svg" alt="Ícone da Capitã Liberta-Ventre" width={300} height={300} />
+      {/* <motion.h1 className={tw(emphasizedTextStyle)}>Capitã Liberta-Ventre</motion.h1> */}
     </motion.div>
     <motion.h2 className={tw(h2Style)} variants={fadeInVariants}>
       Saiba como eliminar a prisão de ventre de forma natural e saudável.
