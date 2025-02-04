@@ -6,13 +6,28 @@ interface IButton {
   modifier?: string;
   className?: string;
   onClick?: () => void;
+  href?: string;
 }
 
-const Button = ({ primary, modifier, className, children, onClick, ...rest }: IButton) => {
+const Button = ({ primary, modifier, className, children, onClick, href, ...rest }: IButton) => {
   const baseStyle = `font-sans font-medium py-2 px-4 border rounded`;
   const styles = primary
     ? `bg-indigo-600 text-white border-indigo-500 hover:bg-indigo-700`
     : `bg-white text-gray-600 border-gray-300 hover:bg-gray-100`;
+
+  if (href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={tw(`${baseStyle} ${styles} ${modifier ?? ``} ${className ?? ``}`)}
+        {...rest}
+      >
+        {children}
+      </a>
+    );
+  }
 
   return (
     <button

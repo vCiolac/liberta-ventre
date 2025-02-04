@@ -40,7 +40,7 @@ const titleContainerStyle = css`
 const h2Style = css`
   font-size: 2rem;
   font-family: 'migae', sans-serif;
-  color: #967878;
+  color: #996210;
   line-height: 1.3;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -73,7 +73,7 @@ const fadeInVariants = {
 const Header = () => (
   <motion.header className={tw(headerStyle)} initial="hidden" animate="visible" variants={fadeInVariants}>
     <motion.div className={tw(titleContainerStyle)} variants={fadeInVariants}>
-      <Image src="/images/logo_svg.svg" alt="Ícone da Capitã Liberta-Ventre" width={300} height={300} />
+      <Image src="/images/logo_svg.svg" alt="Ícone da Capitã Liberta-Ventre" width={450} height={300} />
       {/* <motion.h1 className={tw(emphasizedTextStyle)}>Capitã Liberta-Ventre</motion.h1> */}
     </motion.div>
     <motion.h2 className={tw(h2Style)} variants={fadeInVariants}>

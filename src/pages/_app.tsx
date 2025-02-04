@@ -30,7 +30,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             (window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${PIXEL_ID}');
-            fbq('track', 'PageView');
+            fbq('track', 'PageView', {
+              content_name: "Página Inicial",
+              event_label: "Acessou o site"
+            });
           `,
         }}
       />

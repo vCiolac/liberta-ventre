@@ -8,25 +8,15 @@ import useIntersectionObserver from '@/hooks/IntersectionObserver';
 
 declare global {
   interface Window {
-    fbq: (event: string, action: string) => void;
+    fbq: (event: string, action: string, params?: Record<string, any>) => void;
   }
 }
-
-const features = [
-  `Conteúdo acessível e prático`,
-  `Soluções naturais e sem efeitos colaterais`,
-  `Resultados comprovados por milhares de mulheres`,
-  `Aprovado por especialistas em saúde`,
-  `Abordagem inovadora contra a constipação`,
-  `Guia detalhado com passo a passo`,
-  `Dicas para melhorar sua qualidade de vida`,
-  `Métodos exclusivos e eficazes`,
-];
 
 const checkStyle = css`
   max-height: 1.2rem;
   color: #d69e2e;
-  margin-right: 1rem;
+  margin-right: 1.5rem;
+  margin-left: 2rem;
 `;
 
 const buttonStyle = css`
@@ -36,11 +26,24 @@ const buttonStyle = css`
   font-weight: 700;
   padding: 1rem 2rem;
   font-size: 1.25rem;
+  border-radius: 1.5rem;
   cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
   &:hover {
     background-color: #006400;
     border-color: #006400;
   }
+`;
+
+const shapeDividerStyle = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
 `;
 
 const PricingTable = () => {
@@ -48,51 +51,104 @@ const PricingTable = () => {
 
   useEffect(() => {
     if (isVisible) {
-      window.fbq(`track`, `ViewContent`);
+      window.fbq(`track`, `ViewContent`, {
+        content_name: `Página de Venda`,
+        value: 57.0,
+        currency: `BRL`,
+        event_label: `Visualizou a oferta`,
+      });
     }
   }, [isVisible]);
 
   const trackCheckout = () => {
-    window.fbq(`track`, `InitiateCheckout`);
+    window.fbq(`track`, `InitiateCheckout`, {
+      content_name: `Página de Venda`,
+      value: 57.0,
+      currency: `BRL`,
+      event_label: `Clicou para comprar - Redirecionado para Kiwify`,
+    });
   };
 
   return (
-    <section className={tw(`max-w-3xl mt-6 mx-auto bg-white shadow-xl rounded-lg text-center`)}>
+    <section
+      className={tw(`relative text-center bg-center bg-no-repeat py-24`)}
+      style={{
+        backgroundImage: `url('/images/bg_woman.jpg')`,
+        backgroundSize: `120% auto`,
+      }}
+    >
+      <div className={tw(shapeDividerStyle)}>
+        <svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+          <path
+            fill="#ffffff"
+            // eslint-disable-next-line max-len
+            d="M0,70L48,90C96,110,192,145,288,155C384,165,480,140,576,120C672,100,768,80,864,72C960,64,1056,75,1152,95C1248,115,1344,145,1392,160L1440,175L1440,0L1392,0C1344,0,1248,0,1152,0C1056,0,960,0,864,0C768,0,672,0,576,0C480,0,384,0,288,0C192,0,96,0,48,0L0,0Z"
+          />
+        </svg>
+      </div>
+
       <motion.div
         ref={ref}
         initial={{ opacity: 0, y: 50 }}
         animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
         transition={{ duration: 0.8, ease: `easeOut` }}
-        className={tw(`p-8`)}
+        className={tw(`relative z-10 max-w-3xl mx-auto bg-white shadow-xl rounded-lg p-8`)}
       >
         <h2 className={tw(`text-4xl lg:text-6xl font-extrabold text-gray-800 mb-8`)}>Transforme sua vida hoje!</h2>
+
         <p className={tw(`text-gray-700 text-lg mb-4`)}>
-          Adquira agora o <strong>Manual da Capitã Liberta-Ventre</strong> e receba um
-          <strong> e-book bônus exclusivo!</strong>
+          Adquira agora o <strong>Manual da Capitã Liberta-Ventre</strong> e receba{` `}
+          <strong>dois e-books bônus gratuitos!</strong>
         </p>
+
         <div className={tw(`bg-yellow-200 text-yellow-900 font-semibold py-2 px-4 mb-4 rounded-lg`)}>
-          🎁 <strong>Bônus Especial:</strong> Leve um <strong>e-book extra grátis</strong> na compra! 🎁
+          🎁 <strong>Bônus Especial:</strong>
+          {` `}
+          <span className={tw(`underline`)}>Receitas Poderosas para um Intestino Saudável</span> +{` `}
+          <span className={tw(`underline`)}>Como Colocar Tudo em Prática: Rotina Simples e Eficiente</span>! 🎁
         </div>
+
         <h3 className={tw(`text-xl font-bold text-gray-800 mb-4`)}>O que você vai receber:</h3>
-        <ul className={tw(`space-y-3 mb-6 text-left mx-auto max-w-lg`)}>
-          {features.map((feature) => (
-            <li className={tw(`flex items-center`)} key={feature}>
-              <Check className={tw(checkStyle)} />
-              <p className={tw(`text-gray-700 text-lg`)}>{feature}</p>
-            </li>
-          ))}
+        <ul className={tw(`space-y-3 mb-6 text-left mx-auto max-w-lg `)}>
+          <li className={tw(`flex items-center`)}>
+            <Check className={tw(checkStyle)} />
+            <p className={tw(`text-gray-700 text-lg`)}>Manual completo para aliviar a constipação naturalmente</p>
+          </li>
+          <li className={tw(`flex items-center`)}>
+            <Check className={tw(checkStyle)} />
+            <p className={tw(`text-gray-700 text-lg`)}>Dois e-books bônus com estratégias práticas</p>
+          </li>
+          <li className={tw(`flex items-center`)}>
+            <Check className={tw(checkStyle)} />
+            <p className={tw(`text-gray-700 text-lg`)}>Acesso imediato e suporte exclusivo</p>
+          </li>
         </ul>
-        <div className={tw(`bg-gray-100 p-4 rounded-lg mb-6`)}>
+
+        <div className={tw(`bg-gray-100 p-6 rounded-lg mb-12 text-center`)}>
           <p className={tw(`text-gray-500 text-lg line-through`)}>
             De <strong>R$169,00</strong>
           </p>
           <p className={tw(`text-6xl font-extrabold text-green-600`)}>R$57,00</p>
+          <p className={tw(`text-gray-700 text-lg mt-2`)}>
+            Ou 12x de <strong>R$5,72</strong>
+          </p>
+          <p className={tw(`text-red-600 font-semibold mt-1`)}>🔥 Promoção por tempo limitado!</p>
         </div>
 
-        <Button primary modifier="mt-6" className={tw(buttonStyle)} onClick={trackCheckout}>
-          COMPRAR AGORA!
+        <Button
+          primary
+          modifier=""
+          className={tw(buttonStyle)}
+          onClick={trackCheckout}
+          href="https://pay.kiwify.com.br/jmnji5M"
+        >
+          QUERO COMEÇAR AGORA!
         </Button>
-        <p className={tw(`text-sm text-gray-500 mt-4`)}>🚀 Acesso imediato e pagamento 100% seguro!</p>
+        <div className={tw(`flex justify-center items-center space-x-4 mt-12 text-gray-500 text-sm`)}>
+          <p>🔒 Compra Segura</p>
+          <p>✔️ Satisfação Garantida</p>
+          <p>🔐 Privacidade Protegida</p>
+        </div>
       </motion.div>
     </section>
   );

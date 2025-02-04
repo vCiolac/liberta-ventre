@@ -21,7 +21,7 @@ export default function Home() {
 
   return (
     <>
-      <NextSeo title="Manual da Capitã Liberta Ventre" description="Manual da Capitã Liberta Ventre" />
+      <NextSeo title="Manual da Capitã Liberta-Ventre" description="Manual da Capitã Liberta-Ventre" />
       {showPreloader && <Preloader onExit={handlePreloaderExit} />}
       {showPage && (
         <Page>

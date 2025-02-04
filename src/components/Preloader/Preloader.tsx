@@ -32,7 +32,7 @@ const Preloader = ({ onExit }: PreloaderProps) => {
   const preloaderRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
 
-  const text = `Capitã Liberta Ventre`;
+  const text = `Capitã Liberta-Ventre`;
 
   const generateUniqueKeys = (inputText: string) =>
     inputText.split(``).map((char, index) => `${char}-${index}-${inputText.length}`);

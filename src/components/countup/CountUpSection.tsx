@@ -25,7 +25,7 @@ const CountUpSection = () => {
         animate={isVisible ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1, delay: 0.3 }}
       >
-        já transformaram suas vidas com o<span className={tw(`text-yellow-600`)}> Manual da Capitã Liberta Ventre</span>
+        já transformaram suas vidas com o<span className={tw(`text-yellow-600`)}> Manual da Capitã Liberta-Ventre</span>
         .
       </motion.p>
     </div>

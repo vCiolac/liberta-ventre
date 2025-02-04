@@ -39,7 +39,7 @@ const features = [
 ];
 
 const FeatureSection = () => {
-  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.3 });
+  const [ref, isVisible] = useIntersectionObserver({ threshold: 0.2 });
 
   return (
     <section className={tw(`bg-white pb-0`)}>
@@ -51,7 +51,7 @@ const FeatureSection = () => {
               Por que escolher o manual
             </p>
           </div>
-          <div className={tw(`flex flex-wrap my-12`)} ref={ref}>
+          <div className={tw(`flex flex-wrap mt-12`)} ref={ref}>
             {features.map((feature, index) => (
               <motion.div
                 key={feature.id}
