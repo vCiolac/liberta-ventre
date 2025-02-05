@@ -71,6 +71,7 @@ const PricingTable = () => {
 
   return (
     <section
+      id="oferta"
       className={tw(`relative text-center bg-center bg-no-repeat pt-24`)}
       style={{
         backgroundImage: `url('/images/bg_woman.jpeg')`,
