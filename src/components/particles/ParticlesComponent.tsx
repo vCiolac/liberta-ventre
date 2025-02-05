@@ -66,7 +66,7 @@ const ParticlesComponent = () => {
           },
         },
         opacity: {
-          value: { min: 0.3, max: 0.8 },
+          value: { min: 0.1, max: 0.5 },
           animation: {
             enable: true,
             speed: 1,

@@ -1,18 +1,12 @@
-'use client';
-
 import { tw } from 'twind';
 import { motion } from 'framer-motion';
-import Preferences from '@/constants/svg/preferences.svg';
-// import { useRef } from 'react';
+import VideoEmbed from '../video-player/VideoEmbed';
 
 const VideoSection = () => {
-  // const videoRef = useRef<HTMLVideoElement | null>(null);
-
   const handlePlayVideo = () => {
-    // Dispara o evento "Lead" quando o vídeo começa a tocar
     window.fbq(`track`, `Lead`, {
       content_name: `Vídeo da Oferta`,
-      event_label: `Usuário deu Play no vídeo`,
+      event_label: `Usuário assistiu ao vídeo`,
     });
   };
 
@@ -26,8 +20,7 @@ const VideoSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: `easeOut` }}
           >
-            {/* 🔥 Assim que o vídeo for implementado, substitua esta linha */}
-            <Preferences width="100%" height="100%" onClick={handlePlayVideo} />
+            <VideoEmbed onPlay={handlePlayVideo} />
           </motion.div>
         </div>
       </div>

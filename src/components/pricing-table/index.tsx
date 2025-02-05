@@ -71,9 +71,9 @@ const PricingTable = () => {
 
   return (
     <section
-      className={tw(`relative text-center bg-center bg-no-repeat py-24`)}
+      className={tw(`relative text-center bg-center bg-no-repeat pt-24`)}
       style={{
-        backgroundImage: `url('/images/bg_woman.jpg')`,
+        backgroundImage: `url('/images/bg_woman.jpeg')`,
         backgroundSize: `120% auto`,
       }}
     >
@@ -128,6 +128,7 @@ const PricingTable = () => {
           <p className={tw(`text-gray-500 text-lg line-through`)}>
             De <strong>R$169,00</strong>
           </p>
+          <p className={tw(`text-gray-700 text-lg font-bold`)}>por:</p>
           <p className={tw(`text-6xl font-extrabold text-green-600`)}>R$57,00</p>
           <p className={tw(`text-gray-700 text-lg mt-2`)}>
             Ou 12x de <strong>R$5,72</strong>

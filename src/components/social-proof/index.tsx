@@ -62,7 +62,7 @@ const SocialProof = () => {
           animate={isVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: -50 }}
           transition={{ duration: 0.6 }}
         >
-          O que as leitoras estão dizendo
+          O que as leitoras estão dizendo:
         </motion.h2>
         <motion.div
           className={tw(`bg-white rounded-lg shadow-md px-6 pt-12 pb-4 relative`)}
