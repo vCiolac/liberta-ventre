@@ -10,7 +10,7 @@ if (typeof window !== `undefined`) {
   setup(twindConfig);
 }
 
-const PIXEL_ID = `1779936862846006`;
+const PIXEL_ID = `529194086256515`;
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
