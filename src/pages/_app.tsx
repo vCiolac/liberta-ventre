@@ -4,15 +4,23 @@ import '@/styles/global.css';
 import '@fontsource/inter';
 
 import { setup } from 'twind';
+import { trackEvent } from '@/utils/trackEvent';
+import { useEffect } from 'react';
 import twindConfig from '../twind.config';
 
 if (typeof window !== `undefined`) {
   setup(twindConfig);
 }
 
-const PIXEL_ID = `529194086256515`;
+const PIXEL_ID = process.env.META_PIXEL_ID;
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    trackEvent(`AcessouSite`, {
+      content_name: `Página Inicial`,
+      event_label: `Entrou no site`,
+    });
+  }, []);
   return (
     <>
       <Script
@@ -30,10 +38,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
             (window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${PIXEL_ID}');
-            fbq('track', 'AcessouSite', {
-              content_name: "Página Inicial",
-              event_label: "Acessou o site"
-            });
           `,
         }}
       />

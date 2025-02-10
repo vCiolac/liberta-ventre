@@ -4,6 +4,7 @@ import Check from '@/constants/svg/check.svg';
 import { css } from 'twind/css';
 import { motion } from 'framer-motion';
 import useIntersectionObserver from '@/hooks/IntersectionObserver';
+import { trackEvent } from '@/utils/trackEvent';
 
 declare global {
   interface Window {
@@ -32,7 +33,7 @@ const PricingTable = () => {
 
   useEffect(() => {
     if (isVisible) {
-      window.fbq(`track`, `RolouTodaPagina`, {
+      trackEvent(`RolouTodaPagina`, {
         content_name: `Página de Venda`,
         event_label: `Visualizou a oferta`,
       });
@@ -41,7 +42,7 @@ const PricingTable = () => {
 
   const trackCheckout = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    window.fbq(`track`, `ClicouKiwify`, {
+    trackEvent(`ClicouKiwify`, {
       content_name: `Página de Venda`,
       event_label: `Clicou para comprar - Redirecionado para Kiwify`,
     });

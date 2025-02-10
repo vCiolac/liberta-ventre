@@ -1,7 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import Player from '@vimeo/player';
 import { tw } from 'twind';
-import Image from 'next/image';
+import Play from '@/constants/svg/play.svg';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { trackEvent } from '@/utils/trackEvent';
 
 const VideoEmbed = () => {
   const iframeRef = useRef(null);
@@ -39,7 +41,7 @@ const VideoEmbed = () => {
 
         hasPausedRef.current = true;
         setShowPauseOverlay(true);
-        window.fbq(`track`, `VideoPause`, {
+        trackEvent(`VideoPause`, {
           content_name: `Vídeo da Oferta`,
           event_label: `Usuário pausou o vídeo no segundo ${data.seconds}`,
         });
@@ -58,7 +60,7 @@ const VideoEmbed = () => {
         if (abandonmentTrackedRef.current) return;
         abandonmentTrackedRef.current = true;
         const seconds = latestTimeRef.current;
-        window.fbq(`track`, `VideoAbandono`, {
+        trackEvent(`VideoAbandono`, {
           content_name: `Vídeo da Oferta`,
           event_label: `Usuário abandonou o vídeo no segundo ${seconds}`,
         });
@@ -86,7 +88,7 @@ const VideoEmbed = () => {
         officialPlayRef.current = true;
         player.play();
         setShowUnmuteOverlay(false);
-        window.fbq(`track`, `PlayVideo`, {
+        trackEvent(`PlayVideo`, {
           content_name: `Vídeo da Oferta`,
           event_label: `Usuário deu Play no vídeo com som`,
         });
@@ -137,14 +139,14 @@ const VideoEmbed = () => {
           }}
         >
           <div className={tw(`text-center text-white bg-pink-500 bg-opacity-75 p-4 rounded-lg`)}>
-            <p>O vídeo já começou! Clique aqui para assistir.</p>
-            <Image
-              src="/images/mute.png"
-              alt="Ícone de som desativado"
-              className={tw(`mx-auto mt-2`)}
-              width={64}
-              height={64}
+            <p className={tw(`mt-2 text-xl font-bold`)}>Seu vídeo já começou!</p>
+            <DotLottieReact
+              src="https://lottie.host/6f96b121-2afd-4f90-b944-59e335d723fd/tJvAfAkhWr.lottie"
+              loop
+              autoplay
+              speed={0.5}
             />
+            <p className={tw(`mt-2 text-xl font-bold`)}>Clique para ouvir</p>
           </div>
         </div>
       )}
@@ -156,13 +158,18 @@ const VideoEmbed = () => {
             `absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-80 text-white p-4`,
           )}
         >
-          <p className={tw(`text-xl font-bold`)}>⚠️ Não saia agora!</p>
-          <p className={tw(`mt-2 text-lg`)}>Tem algo importante no final do vídeo...</p>
+          <p className={tw(`text-2xl font-bold text-center pr-6`)}>⚠️ Espere!</p>
+          <p className={tw(`mt-2 text-xl font-bold text-center`)}>O video ainda não acabou!</p>
+          <p className={tw(`mt-2 text-lg text-center`)}>Tem algo importante no final, não perca...</p>
           <button
             type="button"
             onClick={handleResumeAfterPause}
-            className={tw(`bg-green-500 text-white py-2 px-6 rounded-lg mt-4 hover:bg-green-700 transition`)}
+            className={tw(
+              `bg-green-500 text-white py-2 px-6 rounded-lg mt-4 hover:bg-green-700 transition flex items-center 
+              flex-row`,
+            )}
           >
+            <Play className={tw(`w-10 h-10 text-yellow-500 mr-2`)} />
             Continuar Assistindo
           </button>
         </div>
