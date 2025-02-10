@@ -33,7 +33,7 @@ const PricingTable = () => {
 
   useEffect(() => {
     if (isVisible) {
-      trackEvent(`RolouTodaPagina`, {
+      trackEvent(`ScrollDepth`, {
         content_name: `Página de Venda`,
         event_label: `Visualizou a oferta`,
       });
@@ -42,7 +42,7 @@ const PricingTable = () => {
 
   const trackCheckout = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    trackEvent(`ClicouKiwify`, {
+    trackEvent(`InitiateCheckout`, {
       content_name: `Página de Venda`,
       event_label: `Clicou para comprar - Redirecionado para Kiwify`,
     });

@@ -6,23 +6,36 @@ function handleError(message: string, error: any) {
   console.error(message, error);
 }
 
-export function trackEvent(eventName: string, eventData: Record<string, any>) {
+interface EventData extends Record<string, any> {
+  event_label?: string;
+}
+
+export function trackEvent(eventName: string, eventData: EventData) {
   const eventId = generateUUID();
 
-  // Envia para o pixel do Meta (client-side) com o mesmo payload original
+  const defaultData = {
+    action_source: `website`,
+    event_source_url: typeof window !== `undefined` ? window.location.href : ``,
+  };
+
+  const mergedData = {
+    ...defaultData,
+    ...eventData,
+    event_id: eventId,
+  };
+
+  // Envia para o pixel do Meta (client-side)
   if (typeof window !== `undefined` && window.fbq) {
-    window.fbq(`track`, eventName, { ...eventData, event_id: eventId });
+    window.fbq(`track`, eventName, mergedData);
   }
 
-  // Remove "event_label" do payload e insere-o em "custom_data" para o envio via API
-  const { event_label, ...otherData } = eventData;
+  // Ajusta o payload para a API: se houver event_label, mova-o para custom_data
+  const { event_label, ...otherData } = mergedData;
   const serverPayload: Record<string, any> = {
     eventName,
-    event_id: eventId,
     ...otherData,
   };
 
-  // Se "event_label" estiver definido, adiciona-o dentro de "custom_data"
   if (event_label) {
     serverPayload.custom_data = { event_label };
   }

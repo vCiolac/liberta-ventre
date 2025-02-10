@@ -60,7 +60,7 @@ const VideoEmbed = () => {
         if (abandonmentTrackedRef.current) return;
         abandonmentTrackedRef.current = true;
         const seconds = latestTimeRef.current;
-        trackEvent(`VideoAbandono`, {
+        trackEvent(`VideoAbandon`, {
           content_name: `Vídeo da Oferta`,
           event_label: `Usuário abandonou o vídeo no segundo ${seconds}`,
         });
@@ -88,7 +88,7 @@ const VideoEmbed = () => {
         officialPlayRef.current = true;
         player.play();
         setShowUnmuteOverlay(false);
-        trackEvent(`PlayVideo`, {
+        trackEvent(`VideoPlay`, {
           content_name: `Vídeo da Oferta`,
           event_label: `Usuário deu Play no vídeo com som`,
         });

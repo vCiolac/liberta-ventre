@@ -16,7 +16,7 @@ const PIXEL_ID = process.env.META_PIXEL_ID;
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-    trackEvent(`AcessouSite`, {
+    trackEvent(`PageView`, {
       content_name: `Página Inicial`,
       event_label: `Entrou no site`,
     });
