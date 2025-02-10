@@ -107,7 +107,13 @@ const ListSection = () => {
               transition={{ duration: 0.6, ease: `easeOut` }}
               className={tw(`relative w-48 lg:w-64 lg:h-64 px-4 lg:px-0 mb-6 lg:my-0 lg:order-2 lg:pt-10`)}
             >
-              <Image src="/images/list-1.png" alt="Soluções práticas" width={180} height={180} />
+              <Image
+                src="/images/list-1.png"
+                alt="Soluções práticas"
+                width={180}
+                height={180}
+                style={{ width: `auto`, height: `auto` }}
+              />
             </motion.div>
             <div className={tw(`text-center lg:text-left lg:px-8`)}>
               <span
@@ -134,7 +140,13 @@ const ListSection = () => {
               transition={{ duration: 0.8, ease: `easeOut` }}
               className={tw(`relative w-48 px-4 my-6`)}
             >
-              <Image src="/images/list-2.png" alt="Mudança de hábitos" width={180} height={180} />
+              <Image
+                src="/images/list-2.png"
+                alt="Mudança de hábitos"
+                width={180}
+                height={180}
+                style={{ width: `auto`, height: `auto` }}
+              />
             </motion.div>
             <div className={tw(`text-center px-4`)}>
               <span
@@ -166,7 +178,13 @@ const ListSection = () => {
               transition={{ duration: 1, ease: `easeOut` }}
               className={tw(`relative w-48 px-4 my-6`)}
             >
-              <Image src="/images/list-3.png" alt="Resultados duradouros" width={180} height={180} />
+              <Image
+                src="/images/list-3.png"
+                alt="Resultados duradouros"
+                width={180}
+                height={180}
+                style={{ width: `auto`, height: `auto` }}
+              />
             </motion.div>
             <div className={tw(`text-center px-4`)}>
               <span

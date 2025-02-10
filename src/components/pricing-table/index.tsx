@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { tw } from 'twind';
 import Check from '@/constants/svg/check.svg';
-import Button from '@/components/button';
 import { css } from 'twind/css';
 import { motion } from 'framer-motion';
 import useIntersectionObserver from '@/hooks/IntersectionObserver';
@@ -19,24 +18,6 @@ const checkStyle = css`
   margin-left: 2rem;
 `;
 
-const buttonStyle = css`
-  background-color: #008000;
-  color: #fff;
-  border-color: #008000;
-  font-weight: 700;
-  padding: 1rem 2rem;
-  font-size: 1.25rem;
-  border-radius: 1.5rem;
-  cursor: pointer;
-  display: block;
-  width: 100%;
-  text-align: center;
-  &:hover {
-    background-color: #006400;
-    border-color: #006400;
-  }
-`;
-
 const shapeDividerStyle = css`
   position: absolute;
   top: 0;
@@ -51,22 +32,22 @@ const PricingTable = () => {
 
   useEffect(() => {
     if (isVisible) {
-      window.fbq(`track`, `ViewContent`, {
+      window.fbq(`track`, `RolouTodaPagina`, {
         content_name: `Página de Venda`,
-        value: 57.0,
-        currency: `BRL`,
         event_label: `Visualizou a oferta`,
       });
     }
   }, [isVisible]);
 
-  const trackCheckout = () => {
-    window.fbq(`track`, `InitiateCheckout`, {
+  const trackCheckout = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    window.fbq(`track`, `ClicouKiwify`, {
       content_name: `Página de Venda`,
-      value: 57.0,
-      currency: `BRL`,
       event_label: `Clicou para comprar - Redirecionado para Kiwify`,
     });
+    setTimeout(() => {
+      window.location.href = `https://pay.kiwify.com.br/jmnji5M`;
+    }, 300);
   };
 
   return (
@@ -136,16 +117,13 @@ const PricingTable = () => {
           </p>
           <p className={tw(`text-red-600 font-semibold mt-1`)}>🔥 Promoção por tempo limitado!</p>
         </div>
-
-        <Button
-          primary
-          modifier=""
-          className={tw(buttonStyle)}
+        <button
+          type="button"
           onClick={trackCheckout}
-          href="https://pay.kiwify.com.br/jmnji5M"
+          className={tw(`bg-green-500 text-white text-lg py-4 px-10 rounded-lg mt-4 hover:bg-green-700 transition`)}
         >
           QUERO COMEÇAR AGORA!
-        </Button>
+        </button>
         <div className={tw(`flex justify-center items-center space-x-4 mt-12 text-gray-500 text-sm`)}>
           <p>🔒 Compra Segura</p>
           <p>✔️ Satisfação Garantida</p>

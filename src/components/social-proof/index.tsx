@@ -53,7 +53,15 @@ const SocialProof = () => {
 
   return (
     <section className={tw(`py-16 flex flex-col items-center`)}>
-      <Image src="/images/womans.png" alt="Social Proof" width={350} height={250} className={tw(`mb-8`)} />
+      <Image
+        src="/images/womans.png"
+        alt="Social Proof"
+        width={350}
+        height={250}
+        className={tw(`mb-8`)}
+        style={{ width: `auto`, height: `auto` }}
+        priority
+      />
       <CountUpSection />
       <div className={tw(`container mx-auto max-w-4xl p-4`)} ref={ref}>
         <motion.h2
