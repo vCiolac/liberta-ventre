@@ -19,7 +19,8 @@
     "type-check": "tsc",
     "lint": "eslint --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\"",
     "format": "prettier --ignore-path .gitignore \"src/**/*.+(ts|js|tsx)\" --write",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "postbuild": "next-sitemap"
   },
   "lint-staged": {
     "./src/**/*.{ts,js,jsx,tsx}": [
@@ -41,6 +42,7 @@
     "gsap": "3.12.7",
     "next": "15.1.5",
     "next-seo": "6.6.0",
+    "next-sitemap": "4.2.3",
     "postcss": "8.5.1",
     "postcss-scss": "4.0.9",
     "react": "19.0.0",

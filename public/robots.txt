@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.capitalibertaventre.com.br
+
+# Sitemaps
+Sitemap: https://www.capitalibertaventre.com.br/sitemap.xml

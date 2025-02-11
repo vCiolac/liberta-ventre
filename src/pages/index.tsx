@@ -20,7 +20,28 @@ export default function Home() {
 
   return (
     <>
-      <NextSeo title="Manual da Capitã Liberta-Ventre" description="Manual da Capitã Liberta-Ventre" />
+      <NextSeo
+        title="Manual da Capitã Liberta-Ventre | Guia Definitivo"
+        description="Descubra como restaurar seu intestino naturalmente e se livrar da constipação de uma vez por todas 
+        com o Manual da Capitã Liberta-Ventre."
+        canonical="https://www.capitalibertaventre.com.br/"
+        openGraph={{
+          url: `https://www.capitalibertaventre.com.br/`,
+          title: `Manual da Capitã Liberta-Ventre | Guia Definitivo`,
+          // eslint-disable-next-line max-len
+          description: `Descubra como restaurar seu intestino naturalmente e se livrar da constipação de uma vez por todas com o Manual da Capitã Liberta-Ventre.`,
+          images: [
+            {
+              url: `https://www.capitalibertaventre.com.br/images/og-image.png`,
+              width: 1200,
+              height: 630,
+              alt: `Manual da Capitã Liberta-Ventre`,
+            },
+          ],
+          site_name: `Capitã Liberta-Ventre`,
+        }}
+      />
+
       {/* {showPreloader && <Preloader onExit={handlePreloaderExit} />} */}
       {/* {showPage && ( */}
       <Page>
