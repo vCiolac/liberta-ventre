@@ -55,9 +55,9 @@ Fique à vontade para contribuir! Basta seguir os passos:
 ## 📌 Autor
 
 👨‍💻 **Seu Nome Aqui**  
-📧 Contato: [seuemail@email.com](mailto:victor.bcfraga@gmail.com)  
-🔗 GitHub: [github.com/seu-usuario](https://github.com/vciolac)  
-🔗 LinkedIn: [linkedin.com/in/seu-perfil](https://linkedin.com/in/vciolac)
+📧 Contato: [victor.bcfraga@gmail.com](mailto:victor.bcfraga@gmail.com)  
+🔗 GitHub: [github.com/vciolac](https://github.com/vciolac)  
+🔗 LinkedIn: [linkedin.com/in/vciolac](https://linkedin.com/in/vciolac)
 🔗 **Site Pessoal:** [https://www.vciolac.com.br](https://www.vciolac.com.br)
 
 
