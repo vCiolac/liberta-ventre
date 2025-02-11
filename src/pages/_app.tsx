@@ -14,8 +14,19 @@ if (typeof window !== `undefined`) {
 
 const PIXEL_ID = process.env.META_PIXEL_ID;
 
+// Função para capturar e armazenar o "fbc" no cookie
+function captureFBC() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const fbclid = urlParams.get(`fbclid`);
+
+  if (fbclid) {
+    document.cookie = `_fbc=fb.1.${Date.now()}.${fbclid}; path=/; max-age=7776000; SameSite=Lax`;
+  }
+}
+
 export default function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
+    captureFBC();
     trackEvent(`PageView`, {
       content_name: `Página Inicial`,
       event_label: `Entrou no site`,

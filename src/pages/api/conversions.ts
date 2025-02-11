@@ -35,34 +35,24 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   // Monta o objeto user_data mesclando o que foi enviado e os dados do cliente.
   // Os campos que devem ser enviados em hash (SHA256) são: em, ph, fn, ln, ge, db, ct, st, zp, country, external_id.
   const keysToHash = [`em`, `ph`, `fn`, `ln`, `ge`, `db`, `ct`, `st`, `zp`, `country`, `external_id`];
-  const keysNoHash = [
-    `fbc`,
-    `fbp`,
-    `subscription_id`,
-    `fb_login_id`,
-    `lead_id`,
-    `anon_id`,
-    `madid`,
-    `page_id`,
-    `page_scoped_user_id`,
-    `ctwa_clid`,
-    `ig_account_id`,
-    `ig_sid`,
-  ];
+  const keysNoHash = [`fbc`, `fbp`, `ig_account_id`, `ig_sid`];
+
+  const cookies = req.headers.cookie || ``;
+  const fbcMatch = cookies.match(/(?:^|; )_fbc=([^;]*)/);
+  const fbc = fbcMatch ? decodeURIComponent(fbcMatch[1]) : undefined;
 
   const mergedUserData: Record<string, any> = {
     client_ip_address: ipAddress,
     client_user_agent,
+    fbc,
   };
 
   if (user_data && typeof user_data === `object`) {
-    // Para os campos que exigem hash
     keysToHash.forEach((key) => {
       if (user_data[key]) {
         mergedUserData[key] = hashData(user_data[key]);
       }
     });
-    // Para os campos que não precisam de hash
     keysNoHash.forEach((key) => {
       if (user_data[key]) {
         mergedUserData[key] = user_data[key];
@@ -87,7 +77,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         user_data: mergedUserData,
         custom_data: {
           ...custom_data,
-          ...otherData, // Outros dados que o client possa enviar
+          ...otherData,
         },
       },
     ],

@@ -121,9 +121,9 @@ const PricingTable = () => {
         <button
           type="button"
           onClick={trackCheckout}
-          className={tw(`bg-green-500 text-white text-lg py-4 px-10 rounded-lg mt-4 hover:bg-green-700 transition`)}
+          className={tw(`bg-red-600 text-white text-2xl py-4 px-10 rounded-lg mt-4 hover:bg-red-800 transition`)}
         >
-          QUERO COMEÇAR AGORA!
+          QUERO ME LIVRAR DA CONSTIPAÇÃO AGORA!
         </button>
         <div className={tw(`flex justify-center items-center space-x-4 mt-12 text-gray-500 text-sm`)}>
           <p>🔒 Compra Segura</p>

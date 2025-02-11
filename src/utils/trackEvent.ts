@@ -6,16 +6,23 @@ function handleError(message: string, error: any) {
   console.error(message, error);
 }
 
+function getFBC() {
+  const match = document.cookie.match(/(?:^|; )_fbc=([^;]*)/);
+  return match ? decodeURIComponent(match[1]) : null;
+}
+
 interface EventData extends Record<string, any> {
   event_label?: string;
 }
 
 export function trackEvent(eventName: string, eventData: EventData) {
   const eventId = generateUUID();
+  const fbc = getFBC();
 
   const defaultData = {
     action_source: `website`,
     event_source_url: typeof window !== `undefined` ? window.location.href : ``,
+    fbc,
   };
 
   const mergedData = {
