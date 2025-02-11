@@ -1,6 +1,6 @@
 # 🏴‍☠️ Manual da Capitã Liberta-Ventre
 
-![Banner](https://www.capitalibertaventre.com.br/images/og-image.jpg)
+![Banner](https://www.capitalibertaventre.com.br/images/og-image.png)
 
 Projeto desenvolvido para a **Capitã Liberta-Ventre**, uma landing page otimizada para conversão, oferecendo um guia completo para restaurar a saúde intestinal de forma natural.  
 
