@@ -41,14 +41,14 @@ const SocialProofDesafio = () => {
 
   return (
     <section className={tw`py-16 flex flex-col items-center bg-gray-50`}>
-      <Image
+      {/*       <Image
         src="/images/womans.png"
         alt="Mulheres que participaram"
         width={300}
         height={200}
         className={tw`mb-8`}
         priority
-      />
+      /> */}
       <div className={tw`container mx-auto max-w-3xl p-4`} ref={ref}>
         <motion.h2
           className={tw`text-center text-3xl font-bold text-gray-800 mb-10`}

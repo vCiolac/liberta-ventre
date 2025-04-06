@@ -33,9 +33,9 @@ export default function Desafio7Dias() {
       <PageDesafio>
         <HeaderDesafio />
         <main>
-          <SocialProofDesafio />
           <ListSectionDesafio />
           <FeatureSectionDesafio />
+          <SocialProofDesafio />
           <PricingTableDesafio />
         </main>
         <FooterDesafio />

@@ -53,13 +53,8 @@ const PricingTableDesafio = () => {
       >
         <h2 className={tw(`text-4xl lg:text-5xl font-extrabold text-gray-800 mb-6`)}>Participe do Desafio 7 Dias!</h2>
         <p className={tw(`text-gray-700 text-lg mb-4`)}>
-          Adquira agora o <strong>e-book completo</strong> e receba <strong>acessos extras gratuitos</strong> para
-          acelerar sua transformação.
+          Adquira agora o <strong>e-book completo</strong> para acelerar sua transformação.
         </p>
-
-        <div className={tw(`bg-green-100 text-green-800 font-medium py-2 px-4 mb-4 rounded-lg`)}>
-          🎁 <strong>Bônus:</strong> Mini-rotina matinal + Checklist Diário para Liberdade Intestinal 🎁
-        </div>
 
         <h3 className={tw(`text-xl font-semibold text-gray-800 mb-4`)}>Você receberá:</h3>
         <ul className={tw(`space-y-3 mb-6 text-left mx-auto max-w-lg`)}>
@@ -71,10 +66,6 @@ const PricingTableDesafio = () => {
             <Check className={tw(checkStyle)} />
             <p className={tw(`text-gray-700 text-lg`)}>Checklist diário para manter o foco e os resultados</p>
           </li>
-          <li className={tw(`flex items-center`)}>
-            <Check className={tw(checkStyle)} />
-            <p className={tw(`text-gray-700 text-lg`)}>Mini e-book bônus: Receita da manhã + alimentos chave</p>
-          </li>
         </ul>
 
         <div className={tw(`bg-orange-100 p-6 rounded-lg mb-10 text-center`)}>
@@ -82,8 +73,8 @@ const PricingTableDesafio = () => {
             De <strong>R$89,00</strong>
           </p>
           <p className={tw(`text-gray-700 text-lg font-bold`)}>por apenas:</p>
-          <p className={tw(`text-5xl font-extrabold text-green-600`)}>R$19,90</p>
-          <p className={tw(`text-gray-700 text-lg mt-1`)}>ou em até 12x de R$2,40</p>
+          <p className={tw(`text-5xl font-extrabold text-green-600`)}>R$12,90</p>
+          <p className={tw(`text-gray-700 text-lg mt-1`)}>ou em até 12x de R$1,60</p>
           <p className={tw(`text-red-600 font-semibold mt-1`)}>🔥 Válido somente por tempo limitado!</p>
         </div>
 

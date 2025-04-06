@@ -112,19 +112,28 @@ const PricingTable = () => {
             De <strong>R$169,00</strong>
           </p>
           <p className={tw(`text-gray-700 text-lg font-bold`)}>por:</p>
-          <p className={tw(`text-6xl font-extrabold text-green-600`)}>R$57,00</p>
+          <p className={tw(`text-6xl font-extrabold text-green-600`)}>R$21,90</p>
           <p className={tw(`text-gray-700 text-lg mt-2`)}>
-            Ou 12x de <strong>R$5,72</strong>
+            Ou 12x de <strong>R$2,42</strong>
           </p>
           <p className={tw(`text-red-600 font-semibold mt-1`)}>🔥 Promoção por tempo limitado!</p>
         </div>
-        <button
+        <motion.button
           type="button"
           onClick={trackCheckout}
           className={tw(`bg-red-600 text-white text-2xl py-4 px-10 rounded-lg mt-4 hover:bg-red-800 transition`)}
+          animate={{
+            scale: [1, 1.05, 1],
+          }}
+          transition={{
+            duration: 1,
+            repeat: Infinity,
+            repeatType: `loop`,
+            ease: `easeInOut`,
+          }}
         >
           QUERO ME LIVRAR DA CONSTIPAÇÃO AGORA!
-        </button>
+        </motion.button>
         <div className={tw(`flex justify-center items-center space-x-4 mt-12 text-gray-500 text-sm`)}>
           <p>🔒 Compra Segura</p>
           <p>✔️ Satisfação Garantida</p>

@@ -47,9 +47,9 @@ export default function Home() {
       <Page>
         <Header />
         <main>
-          <VideoSection />
-          <SocialProof />
+          {/* <VideoSection /> */}
           <ListSection />
+          <SocialProof />
           <FeatureSection />
           <PricingTable />
         </main>
